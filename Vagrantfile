@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.network "forwarded_port", guest: 80, host: 8080
   
-  config.vm.provision "shell", path: "setup/provision.sh"
+  config.vm.provision "shell", path: "https://raw.githubusercontent.com/srctips/vagrant-wordpress/master/setup/provision.sh"
 
   config.vm.provider "virtualbox" do |vb|
      vb.name = "Wordpress_Development"

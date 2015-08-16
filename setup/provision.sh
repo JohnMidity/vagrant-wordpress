@@ -43,17 +43,7 @@ WP_CONFIG
 chown nobody.nogroup /var/www/html/wp-config.php
 chmod 0644 /var/www/html/wp-config.php
 
-rsync -va /var/www/html/wp-content/uploads/ /vagrant/media/
-if [ -d /var/www/html/wp-content/uploads ]; then
-	rm -rf /var/www/html/wp-content/uploads
-fi
-ln -s /vagrant/media /var/www/html/wp-content/uploads
-
-rsync -va /var/www/html/wp-content/themes/ /vagrant/themes/
-if [ -d /var/www/html/wp-content/themes ]; then
-	rm -rf /var/www/html/wp-content/themes
-fi
-ln -s /vagrant/themes /var/www/html/wp-content/themes
+ln -s /vagrant /var/www/html/wp-content/themes/vagrant
 
 mysql -u root <<WP_SQL
 CREATE DATABASE IF NOT EXISTS wordpress;
