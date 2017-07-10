@@ -1,0 +1,31 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+  #### choose which box to use as startingpoint
+  config.vm.box = "ubuntu/trusty64"
+  #config.vm.box = "trusty64-vb5-docker"
+
+  #### switch off checking for updates
+  config.vm.box_check_update = false
+  
+  ### choose a meaningful hostname
+  config.vm.hostname = "wp-dev"
+
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  ### enable and choose an ip address if you want
+  # config.vm.network "private_network", ip: "192.168.33.101"
+  
+  #### if you want you can use the path to a github repo script here
+  #### for example: config.vm.provision "shell", path: "https://raw.githubusercontent.com/JohnMidity/vagrant-wordpress/master/setup/provision.sh"
+  #### or:          config.vm.provision "shell", path: "https://raw.githubusercontent.com/srctips/vagrant-wordpress/master/setup/provision.sh"
+  config.vm.provision "shell", path: "setup/provision.sh"
+
+  config.vm.provider "virtualbox" do |vb|
+     #### choose a meaningful name for this virtual machine (will show up in VirtualBox
+     vb.name = "Wordpress_Development"
+     vb.memory = "1024"
+     # vb.cpus = 2
+  end
+end
