@@ -26,7 +26,9 @@ This Vagrant configuration will do the following:
 		
 2. Review the files in the __setup__ folder.
 	* Remember to sync up any changes between the other files -- for example any database connection updates.
-3. Start Vagrant
+3. Make a copy of Vagrantfile.default and name it Vagrantfile
+4. Check contents of Vagrantfile and adjust where needed
+5. Start Vagrant
 
 		vagrant up
 

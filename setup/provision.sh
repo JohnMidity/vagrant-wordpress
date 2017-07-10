@@ -49,3 +49,20 @@ mysql -u root <<WP_SQL
 CREATE DATABASE IF NOT EXISTS wordpress;
 GRANT ALL PRIVILEGES ON wordpress.* TO dbuser@localhost IDENTIFIED BY 'password'
 WP_SQL
+
+# install xdebug
+apt-get install -y php5-xdebug
+
+# add the required xdebug entries to the php.ini
+cat >> /etc/php5/apache2/php.ini <<PHPINI
+zend_extension = /usr/lib/php5/20121212/xdebug.so
+xdebug.remote_enable = on
+xdebug.remote_connect_back = 1
+PHPINI
+
+# enable the rewrite module
+a2enmod mod_rewrite
+# allow override all so wp can use .htaccess file in /var/www for rewrite
+sed -i '/Directory \/var\/www\/>/!b;n;n;cAllowOverride All' /etc/apache2/apache2.conf
+# restart apache2
+service apache2 restart
