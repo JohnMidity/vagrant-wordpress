@@ -16,6 +16,19 @@ wget https://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
 mv wordpress /var/www/html
 
+cat > /var/www/html/.htaccess <<WP_HTACCESS
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+WP_HTACCESS
+
 cat > /var/www/html/wp-config.php <<WP_CONFIG
 <?php
 define('DB_NAME', 'wordpress');
