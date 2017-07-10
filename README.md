@@ -2,6 +2,8 @@
 
 Vagrant configuration for easier Wordpress development for both creating a website and/or developing a Wordpress Theme.
 
+Based on earlier work at _srctips/vagrant-wordpress_  https://github.com/srctips/vagrant-wordpress
+
 This Vagrant configuration will do the following:
 
 * Download the Ubuntu 14.05 Vagrant box, if needed (_ubuntu/trusty64_)
