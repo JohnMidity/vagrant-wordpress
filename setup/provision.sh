@@ -73,6 +73,16 @@ xdebug.remote_enable = on
 xdebug.remote_connect_back = 1
 PHPINI
 
+# Make a backup of the wordpress database on shutdown
+cat >> /etc/rc0.d/K11mysqlbackup.sh <<MYSQLBACKUP
+#! /bin/sh
+if [ ! -d "/vagrant/dbbackup" ]; then
+  mkdir /vagrant/dbbackup
+fi
+
+mysqldump -u dbuser -ppassword wordpress | gzip > /vagrant/dbbackup/wordpress_`date +'%Y%m%d%H%M'`.sql.gz
+MYSQLBACKUP
+
 # enable the rewrite module
 a2enmod rewrite
 # allow override all so wp can use .htaccess file in /var/www for rewrite
