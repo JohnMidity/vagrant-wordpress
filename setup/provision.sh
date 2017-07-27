@@ -80,7 +80,7 @@ if [ ! -d "/vagrant/dbbackup" ]; then
   mkdir /vagrant/dbbackup
 fi
 
-mysqldump -u dbuser -ppassword wordpress | gzip > /vagrant/dbbackup/wordpress_`date +'%Y%m%d%H%M'`.sql.gz
+mysqldump -u dbuser -ppassword wordpress > /vagrant/dbbackup/wordpress_`date +'%Y%m%d%H%M'`.sql
 MYSQLBACKUP
 
 # enable the rewrite module
